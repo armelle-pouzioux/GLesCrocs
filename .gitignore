@@ -1,0 +1,25 @@
+# Dépendances Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Variables d’environnement
+.env
+.env.local
+.env.*.local
+
+# PHP
+vendor/
+
+# Logs
+*.log
+backend/storage/logs/
+
+# Build frontend
+frontend/dist/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
