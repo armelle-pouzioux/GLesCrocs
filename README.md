@@ -33,10 +33,13 @@ Projet réalisé en solo, avec une organisation agile (Trello) et une gestion de
 Le projet distingue clairement les états suivants :
 
 * **VALIDATED** : commande prise en compte et ajoutée à la file d’attente
+* **PREPARING** : commande en cours de préparation
+* **PAID** : commande payée (paiement confirmé)
 * **READY** : repas prêt, notification envoyée au client
-* **PAID** : commande terminée (repas récupéré)
+* **COMPLETED** : commande terminée (repas récupéré)
+* **CANCELLED** : commande annulée (ex. urgence, erreur)
 
-Ces états permettent un suivi clair de la file d’attente et servent de base au calcul des statistiques.
+Ces états permettent un suivi précis du service et servent de base au calcul des statistiques.
 
 ## Architecture technique
 
@@ -93,10 +96,13 @@ La file d’attente est gérée via :
 Les commandes contiennent plusieurs timestamps afin de permettre des analyses ultérieures :
 
 * `validated_at` : commande prise en compte
+* `preparing_at` : début de préparation
+* `paid_at` : paiement confirmé
 * `ready_at` : repas prêt
-* `paid_at` : commande terminée
+* `completed_at` : commande terminée (repas récupéré)
+* `cancelled_at` : commande annulée
 
-Ces champs permettent de calculer des indicateurs tels que le temps d’attente ou la vitesse de préparation.
+Ces champs permettent de calculer des indicateurs tels que le temps d’attente, la vitesse de préparation et les heures de pointe.
 
 ## API (prévision)
 
@@ -227,8 +233,10 @@ Indicateurs envisagés :
 
 * Nombre de commandes par jour ou période
 * Panier moyen
-* Temps moyen de préparation (validated → ready)
-* Temps moyen total (validated → paid)
+* Temps moyen avant paiement (validated → paid)
+* Temps moyen de préparation (preparing → ready)
+* Temps moyen avant récupération (ready → completed)
+* Temps moyen total (validated → completed)
 * Heures de pointe (répartition par heure)
 * Plats les plus demandés
 
