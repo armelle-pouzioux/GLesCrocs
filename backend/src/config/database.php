@@ -48,7 +48,8 @@ final class Database
 
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '' || str_starts_with($line, '#')) continue;
+            if ($line === '' || strpos($line, '#') === 0) continue;
+
 
             $parts = explode('=', $line, 2);
             if (count($parts) !== 2) continue;

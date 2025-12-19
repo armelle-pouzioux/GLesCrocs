@@ -7,7 +7,7 @@ final class JsonMiddleware
 {
     public static function applyCors(): void
     {
-        // Dev only: adapte si besoin
+    
         header('Access-Control-Allow-Origin: http://localhost:5173');
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Allow-Headers: Content-Type, Authorization');
